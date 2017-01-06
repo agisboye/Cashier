@@ -10,15 +10,15 @@ import Foundation
 
 public struct ReceiptInfo {
     
-    let environment: Cashier.Environment
+    public let environment: Cashier.Environment
     
-    let receipt: DecodedReceipt
+    public let receipt: DecodedReceipt
     
     /// Only returned for iOS 6 style transaction receipts for auto-renewable subscriptions. The base-64 encoded transaction receipt for the most recent renewal.
-    let latestReceipt: String?
+    public let latestReceipt: String?
     
     /// Only returned for iOS 6 style transaction receipts for auto-renewable subscriptions. The JSON representation of the receipt for the most recent renewal.
-    let latestReceiptInfo: DecodedReceipt?
+    public let latestReceiptInfo: DecodedReceipt?
     
     // MARK: Init
     internal init(json: [String:Any], environment: Cashier.Environment) throws {

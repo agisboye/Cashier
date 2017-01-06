@@ -53,8 +53,10 @@ public struct InAppReceipt {
     /// Treat a canceled receipt the same as if no purchase had ever been made.
     public let cancellationDate: Date?
     
+    /// This value is false by default unless the "is_trial_period" key is present
+    /// in the receipt with a corresponding string value of "true".
     /// - warning: Not mentioned by Apple in their documentation.
-    public let isTrialPeriod: Bool?
+    public let isTrialPeriod: Bool
     
     /// A string that the App Store uses to uniquely identify the application that created the transaction.
     /// If your server supports multiple applications, you can use this value to differentiate between them.
@@ -101,7 +103,7 @@ public struct InAppReceipt {
         self.subscriptionExpirationDate = Date.fromMillisecondValue(json["receipt_expires_date"]) ?? Date.fromMillisecondValue(json["expires_date"])
         self.cancellationDate = Date.fromMillisecondValue(json["receipt_cancellation_date"]) ?? Date.fromMillisecondValue(json["cancellation_date"])
         
-        self.isTrialPeriod = json["is_trial_period"] as? Bool
+        self.isTrialPeriod = (json["is_trial_period"] as? String) == "true"
         self.appItemId = json["app_item_id"] as? String
         self.externalVersionIdentifier = json["version_external_identifier"] as? String
         self.webOrderLineItemId = json["web_order_line_item_id"] as? String

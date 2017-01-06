@@ -8,9 +8,6 @@ let package = Package(
     ],
     dependencies: [
 
-        // JSON enum wrapper around Foundation JSON
-//        .Package(url: "https://github.com/vapor/json.git", majorVersion: 1),
-
     ],
     exclude: [
 
